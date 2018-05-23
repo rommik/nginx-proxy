@@ -233,8 +233,8 @@ server {
 
 {{ if eq $https_method "redirect" }}
 server {
-	server_name {{ $host }};
-	listen 80 {{ $default_server }};
+	server_name _;
+	listen 80 default_server;
 	{{ if $enable_ipv6 }}
 	listen [::]:80 {{ $default_server }};
 	{{ end }}
@@ -244,8 +244,8 @@ server {
 {{ end }}
 
 server {
-	server_name {{ $host }};
-	listen 443 ssl http2 {{ $default_server }};
+	server_name _;
+	listen 443 ssl http2 default_server;
 	{{ if $enable_ipv6 }}
 	listen [::]:443 ssl http2 {{ $default_server }};
 	{{ end }}
