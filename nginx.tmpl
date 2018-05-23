@@ -334,8 +334,8 @@ server {
 {{ if or (not $is_https) (eq $https_method "noredirect") }}
 
 server {
-	server_name {{ $host }};
-	listen 80 {{ $default_server }};
+	server_name _;
+	listen 80 default_server;
 	{{ if $enable_ipv6 }}
 	listen [::]:80 {{ $default_server }};
 	{{ end }}
