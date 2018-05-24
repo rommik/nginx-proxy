@@ -227,9 +227,9 @@ proxy_set_header Proxy "";
 {{/* Use the cert specified on the container or fallback to the best vhost match */}}
 {{ $cert := (coalesce $certName $vhostCert) }}
 
-{{ $is_https := (and (ne $https_method "nohttps") (ne $cert "") (exists (printf "/etc/nginx/certs/%s.crt" $cert)) (exists (printf "/etc/nginx/certs/%s.key" $cert))) }}
+#{{ $is_https := (and (ne $https_method "nohttps") (ne $cert "") (exists (printf "/etc/nginx/certs/%s.crt" $cert)) (exists (printf "/etc/nginx/certs/%s.key" $cert))) }}
 
-{{ if $is_https }}
+#{{ if $is_https }}
 
 {{ if eq $https_method "redirect" }}
 server {
@@ -336,6 +336,7 @@ server {
 server {
 	server_name _;
 	listen 80 default_server;
+	listen 443 default_server;
 	{{ if $enable_ipv6 }}
 	listen [::]:80 {{ $default_server }};
 	{{ end }}
